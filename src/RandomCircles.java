@@ -18,7 +18,7 @@ public class RandomCircles extends GraphicsProgram {
         int maxCircles = 1000;
         for(int i = 0; i < maxCircles; i++){
             randomCircle();
-            pause(0.1);
+            pause(0.3);
         }
     }
 
