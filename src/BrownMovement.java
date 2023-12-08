@@ -3,7 +3,7 @@ import acm.graphics.GOval;
 import acm.program.GraphicsProgram;
 
 import java.awt.*;
-import java.util.random.RandomGenerator;
+import acm.util.RandomGenerator;
 
 public class BrownMovement extends GraphicsProgram {
     private static final int CANVAS_WIDTH = 800;
@@ -11,12 +11,13 @@ public class BrownMovement extends GraphicsProgram {
     private static final int STEP_LENGTH = 10;
     private static final int PAUSE_TIME_MS = 10;
     private static final int NUM_DIRECTIONS = 8;
-    private static final int NUM_BROWNS = 11;
-    private RandomGenerator rgen = new acm.util.RandomGenerator();
+    private static final int NUM_BROWNS = 31;
+    private RandomGenerator rgen;
 
     public void init() {
+        rgen = RandomGenerator.getInstance();
         setSize(CANVAS_WIDTH, CANVAS_HEIGHT);
-        pause(PAUSE_TIME_MS * 10);
+        pause(PAUSE_TIME_MS * 40);
     }
 
     public void run() {

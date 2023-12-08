@@ -8,15 +8,16 @@ public class RandomCircles extends GraphicsProgram {
     private static final int CANVAS_WIDTH = 1000;
     private static final int CANVAS_HEIGHT = 1000;
 
-    private RandomGenerator rgen = new RandomGenerator();
+    private RandomGenerator rgen;
 
     public void init() {
         setSize(CANVAS_WIDTH, CANVAS_HEIGHT);
+        rgen = RandomGenerator.getInstance();
     }
 
     public void run() {
         int maxCircles = 1000;
-        for(int i = 0; i < maxCircles; i++){
+        for (int i = 0; i < maxCircles; i++) {
             randomCircle();
             pause(0.3);
         }
@@ -29,8 +30,9 @@ public class RandomCircles extends GraphicsProgram {
         int circleRadius = rgen.nextInt(1, maxRadius);
         GOval circle = new GOval(circleX, circleY, circleRadius, circleRadius);
         circle.setFilled(true);
-        Color circleColor = new Color(rgen.nextInt(256), rgen.nextInt(256), rgen.nextInt(256), rgen.nextInt(100,200));
+        Color circleColor = new Color(rgen.nextInt(256), rgen.nextInt(256), rgen.nextInt(256), rgen.nextInt(100, 200));
         circle.setColor(circleColor);
         add(circle);
+
     }
 }
