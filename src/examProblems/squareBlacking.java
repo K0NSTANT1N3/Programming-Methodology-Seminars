@@ -1,3 +1,5 @@
+package examProblems;
+
 import acm.graphics.GRect;
 import acm.program.GraphicsProgram;
 
