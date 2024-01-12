@@ -1,4 +1,4 @@
-package examProblems;
+package exams.midExamProblems;
 
 import acm.program.ConsoleProgram;
 

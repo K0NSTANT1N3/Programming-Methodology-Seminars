@@ -1,4 +1,4 @@
-package firstMidExam;
+package exams.firstMidExam;
 
 import acm.program.ConsoleProgram;
 
