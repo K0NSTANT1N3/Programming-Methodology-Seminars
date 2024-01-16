@@ -1,13 +1,7 @@
-//package exams.finaleExams;
-//
-//import java.util.ArrayList;
-//import java.util.Iterator;
-//import java.util.List;
-//
-//
-//
-//public class footballProblem {
-//
+package exams.finaleExams;
+
+public class FootballProblem {
+
 //    public Iterator<String> getClubs(String player) {
 //
 //    }
@@ -42,5 +36,5 @@
 //        }
 //        return false;
 //    }
-//
-//}
+
+}

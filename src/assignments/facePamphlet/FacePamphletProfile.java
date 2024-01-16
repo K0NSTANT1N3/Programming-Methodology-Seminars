@@ -1,4 +1,4 @@
-package assignments.namePamphlet;/*
+package assignments.facePamphlet;/*
  * File: FacePamphletProfile.java
  * ------------------------------
  * This class keeps track of all the information for one profile
@@ -12,6 +12,11 @@ import acm.graphics.*;
 import java.util.*;
 
 public class FacePamphletProfile implements FacePamphletConstants {
+
+	private String name;
+	private GImage image;
+	private String status;
+	private List<FacePamphletProfile> friends;
 	
 	/** 
 	 * Constructor
@@ -19,13 +24,13 @@ public class FacePamphletProfile implements FacePamphletConstants {
 	 * the profile.
 	 */
 	public FacePamphletProfile(String name) {
-		// You fill this in
+		this.name = name;
 	}
 
 	/** This method returns the name associated with the profile. */ 
 	public String getName() {
 		// You fill this in.  Currently always returns the empty string.
-		return "";
+		return name;
 	}
 
 	/** 
@@ -34,12 +39,13 @@ public class FacePamphletProfile implements FacePamphletConstants {
 	 * returns null. */ 
 	public GImage getImage() {
 		// You fill this in.  Currently always returns null.
-		return null;
+		return image;
 	}
 
 	/** This method sets the image associated with the profile. */ 
 	public void setImage(GImage image) {
 		// You fill this in
+		this.image = image;
 	}
 	
 	/** 
@@ -49,12 +55,13 @@ public class FacePamphletProfile implements FacePamphletConstants {
 	 */ 
 	public String getStatus() {
 		// You fill this in.  Currently always returns the empty string.
-		return "";
+		return status;
 	}
 	
 	/** This method sets the status associated with the profile. */ 
 	public void setStatus(String status) {
 		// You fill this in
+		this.status = status;
 	}
 
 	/** 

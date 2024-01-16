@@ -1,4 +1,4 @@
-package assignments.namePamphlet;/*
+package assignments.facePamphlet;/*
  * File: FacePamphletCanvas.java
  * -----------------------------
  * This class represents the canvas on which the profiles in the social

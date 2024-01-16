@@ -1,4 +1,4 @@
-package assignments.namePamphlet;/*
+package assignments.facePamphlet;/*
  * File: FacePamphletConstants.java
  * --------------------------------
  * This file declares several constants that are shared by the

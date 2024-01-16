@@ -1,4 +1,4 @@
-package assignments.namePamphlet;/*
+package assignments.facePamphlet;/*
  * File: FacePamphletDatabase.java
  * -------------------------------
  * This class keeps track of the profiles of all users in the
