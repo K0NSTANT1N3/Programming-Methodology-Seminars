@@ -1,9 +1,11 @@
 package exams.finaleExamProblem;
 
+import acm.program.ConsoleProgram;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class ArrayMultiply {
+public class ArrayMultiply extends ConsoleProgram {
 
     public ArrayList<Integer> multiply(ArrayList<Integer> a, ArrayList<Integer> b) {
         Collections.reverse(a);
@@ -13,12 +15,10 @@ public class ArrayMultiply {
         ArrayList<Integer> one = new ArrayList<>();
         one.add(1);
 
-
         while (!counter.equals(b)){
             result = sum(result, a);
             counter = sum(counter, one);
         }
-
 
         Collections.reverse(a);
         Collections.reverse(b);
