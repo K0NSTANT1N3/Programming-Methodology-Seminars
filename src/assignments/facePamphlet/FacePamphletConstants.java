@@ -30,7 +30,7 @@ public interface FacePamphletConstants {
 	public static final String PROFILE_NAME_FONT = "Dialog-24";
 	
 	/** Name of font used to display the text "No Image" in user
-	 *  profiles that do not contain an actual image */
+	 *  profiles that do not contain an actual imageLabel */
 	public static final String PROFILE_IMAGE_FONT = "Dialog-24";
 	
 	/** Name of font used to display the status in a user's profile */
