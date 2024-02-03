@@ -1,4 +1,4 @@
-package exams.finaleExams;
+package exams.finaleExamProblem.madeUpProblems;
 
 public class FootballProblem {
 

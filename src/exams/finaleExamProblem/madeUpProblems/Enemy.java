@@ -1,4 +1,4 @@
-package exams.finaleExamProblem;
+package exams.finaleExamProblem.madeUpProblems;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -29,10 +29,8 @@ public class Enemy {
 
         Collection <String> enemiesOfEnemies = new HashSet<>();
 
-
         return false;
     }
-
 
     private boolean getEnemies(String name, Map<String, Collection<String>> friends) {
         Collection<String> enemies = new HashSet<>();

@@ -1,4 +1,4 @@
-package exams.finaleExamProblem;
+package exams.finaleExamProblem.madeUpProblems;
 
 import java.util.ArrayList;
 
