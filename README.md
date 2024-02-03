@@ -1,2 +1,3 @@
-# Seminars
-all seminar problem will be uploaded here
+# Methodology
+
+Everythigng related to methodology course will be uploaded here
