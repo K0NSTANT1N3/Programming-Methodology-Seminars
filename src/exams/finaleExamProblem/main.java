@@ -1,12 +1,13 @@
 package exams.finaleExamProblem;
 
 import acm.program.ConsoleProgram;
+import exams.finaleExamProblem.domino.Domino;
 import exams.finaleExamProblem.domino.Title;
 import exams.finaleExamProblem.exam2022_2023.undo_redo.RedoUndo;
 
 public class main extends ConsoleProgram {
     public void run(){
-        testTitle();
+        testDomino();
 
     }
 
@@ -32,5 +33,10 @@ public class main extends ConsoleProgram {
         Title ttl = new Title();
         String str = "heLLo NiggGeri frienD";
         println(ttl.translateToTitle(str));
+    }
+
+    private void testDomino(){
+        Domino domino = new Domino();
+        print(domino.simulateDomino(1000000));
     }
 }
