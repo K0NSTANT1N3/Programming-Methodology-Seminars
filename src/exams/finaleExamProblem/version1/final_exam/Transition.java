@@ -14,7 +14,6 @@ public class Transition extends ConsoleProgram {
                 String first = s.substring(0, i);
                 String end = s.substring(i + 1);
 
-
                 for(int j = 0; j < x; j++){
                    String tmp = end.charAt(0) + "";
                    first = first + tmp;

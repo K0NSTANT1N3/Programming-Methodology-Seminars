@@ -1,4 +1,4 @@
-package exams.midExamProblems.firstMidExam;
+package exams.midExamProblems.myMidExam;
 
 import acm.graphics.GOval;
 import acm.program.GraphicsProgram;
