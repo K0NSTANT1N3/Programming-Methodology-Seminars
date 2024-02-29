@@ -1,4 +1,4 @@
-package exams.finaleExamProblem.version1;
+package exams.finaleExamProblem.version1.gallery;
 
 import acm.program.ConsoleProgram;
 import acm.util.RandomGenerator;
@@ -35,9 +35,7 @@ public class JokerProbabilitySimulator extends ConsoleProgram {
                     if (i >= 9) break;
                 }
                 for (int itr : player1) {
-                    if (cardDec.contains(itr)) {
-                        cardDec.remove(itr);
-                    }
+                    cardDec.remove(itr);
                 }
             }
 
@@ -48,8 +46,7 @@ public class JokerProbabilitySimulator extends ConsoleProgram {
             }
         }
 
-        double freq =  (double) jokerYes / (jokerNot + jokerYes);
-        return freq;
+        return (double) jokerYes / (jokerNot + jokerYes);
     }
 
 }

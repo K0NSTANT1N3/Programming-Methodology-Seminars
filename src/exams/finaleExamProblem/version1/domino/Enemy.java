@@ -1,4 +1,4 @@
-package exams.finaleExamProblem.domino;
+package exams.finaleExamProblem.version1.domino;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

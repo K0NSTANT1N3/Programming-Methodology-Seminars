@@ -1,4 +1,4 @@
-package exams.finaleExamProblem.version1;
+package exams.finaleExamProblem.version1.gallery;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -16,9 +16,7 @@ public class Cousins {
         HashSet<String> uncles = bringUncles(grandpa, sonFather);
         uncles.remove(father);
 
-        ArrayList<String> cousins = bringCousins(sonFather, uncles);
-
-        return cousins;
+        return bringCousins(sonFather, uncles);
     }
 
     private ArrayList<String> bringCousins(HashMap<String, String> sonFather, HashSet<String> uncles) {
@@ -41,6 +39,7 @@ public class Cousins {
             while (line != null) {
                 StringTokenizer token = new StringTokenizer(line);
                 map.put(token.nextToken(), token.nextToken());
+                line = reader.readLine();
             }
         } catch (IOException e) {
             throw new RuntimeException(e);

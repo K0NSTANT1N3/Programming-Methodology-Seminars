@@ -1,4 +1,4 @@
-package exams.finaleExamProblem.domino;
+package exams.finaleExamProblem.version1.domino;
 
 import acm.program.ConsoleProgram;
 

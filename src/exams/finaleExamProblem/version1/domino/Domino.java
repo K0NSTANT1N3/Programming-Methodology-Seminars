@@ -1,4 +1,4 @@
-package exams.finaleExamProblem.domino;
+package exams.finaleExamProblem.version1.domino;
 
 import acm.program.ConsoleProgram;
 import acm.util.RandomGenerator;
@@ -7,7 +7,7 @@ import java.util.HashSet;
 
 public class Domino extends ConsoleProgram {
 
-    private acm.util.RandomGenerator rand = RandomGenerator.getInstance();
+    private final acm.util.RandomGenerator rand = RandomGenerator.getInstance();
 
 
     public double simulateDomino(int n) {

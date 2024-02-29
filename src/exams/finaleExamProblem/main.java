@@ -1,8 +1,8 @@
 package exams.finaleExamProblem;
 
 import acm.program.ConsoleProgram;
-import exams.finaleExamProblem.domino.Domino;
-import exams.finaleExamProblem.domino.Title;
+import exams.finaleExamProblem.version1.domino.Domino;
+import exams.finaleExamProblem.version1.domino.Title;
 import exams.finaleExamProblem.exam2022_2023.undo_redo.RedoUndo;
 
 public class main extends ConsoleProgram {

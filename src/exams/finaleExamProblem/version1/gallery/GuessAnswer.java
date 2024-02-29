@@ -1,4 +1,4 @@
-package exams.finaleExamProblem.version1;
+package exams.finaleExamProblem.version1.gallery;
 
 import acm.program.ConsoleProgram;
 

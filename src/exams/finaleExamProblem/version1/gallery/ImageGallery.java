@@ -1,4 +1,4 @@
-package exams.finaleExamProblem.version1;
+package exams.finaleExamProblem.version1.gallery;
 
 import acm.graphics.GImage;
 import acm.program.GraphicsProgram;
@@ -54,8 +54,7 @@ public class ImageGallery extends GraphicsProgram {
     @Override
     public void mouseClicked(MouseEvent e) {
         if (!pictureZoomed){
-            if(getElementAt(e.getX(), e.getY()) instanceof GImage){
-                GImage img = (GImage) getElementAt(e.getX(), e.getY());
+            if(getElementAt(e.getX(), e.getY()) instanceof GImage img){
                 zoomImage(img);
             }
         }else{
