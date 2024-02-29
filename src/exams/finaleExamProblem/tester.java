@@ -4,10 +4,11 @@ import acm.program.ConsoleProgram;
 import exams.finaleExamProblem.version1.domino.Domino;
 import exams.finaleExamProblem.version1.domino.Title;
 import exams.finaleExamProblem.exam2022_2023.undo_redo.RedoUndo;
+import exams.finaleExamProblem.version1.final_exam.Transition;
 
-public class main extends ConsoleProgram {
+public class tester extends ConsoleProgram {
     public void run(){
-        testDomino();
+
 
     }
 
@@ -38,5 +39,10 @@ public class main extends ConsoleProgram {
     private void testDomino(){
         Domino domino = new Domino();
         print(domino.simulateDomino(1000000));
+    }
+
+    private void testTransition(){
+        Transition transition = new Transition();
+        System.out.println(transition.blowup("a3t0t0x45n1k09"));
     }
 }

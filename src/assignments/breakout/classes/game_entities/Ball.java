@@ -71,7 +71,7 @@ public class Ball extends GOval {
      * coordinate counting
      */
     /*
-    returns coordinate distances main points
+    returns coordinate distances tester points
      on the ball from 90 degree to 45 degree
      */
     public HashMap<Double, Double> distancesOfPoints() {
