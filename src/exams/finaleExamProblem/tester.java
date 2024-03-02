@@ -8,13 +8,10 @@ import exams.finaleExamProblem.version1.domino.Title;
 import exams.finaleExamProblem.version1.final_exam.Transition;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
 
 public class tester extends ConsoleProgram {
     @Override
     public void run() {
-        testSorting();
 
     }
 
@@ -58,26 +55,18 @@ public class tester extends ConsoleProgram {
     }
 
     private void testSorting() {
-        ArrayList<String> lst = new ArrayList<>();
-        lst.add("cbdc");
-        lst.add("efgh");
-        lst.add("aaaaaa");
-        lst.add("tyyyt");
-
+        ArrayList<Integer> lst = new ArrayList<>();
+        lst.add(5);
+        lst.add(2);
+        lst.add(8);
 
         System.out.println(lst);
         lst.sort((a,b) -> {
-            Set<Character> aset = new HashSet<>();
-            Set<Character> bset = new HashSet<>();
-
-            for(int i = 0; i < a.length(); i++)aset.add(a.charAt(i));
-            for(int i = 0; i < b.length(); i++)bset.add(b.charAt(i));
-
-            if(aset.size() > bset.size())return 1;
-            if(aset.size() < bset.size())return -1;
-            else return 0;
+            if(a > b)return 1;
+            else if(a < b) return -1;
+            else  return  0;
         });
         System.out.println(lst);
-
+        System.out.println(Integer.compare(2, 4));
     }
 }
