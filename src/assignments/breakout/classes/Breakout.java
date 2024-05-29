@@ -360,7 +360,7 @@ public class Breakout extends GraphicsProgram {
     /* calculates which image to set as background based on numbers*/
     private void setBackground(int number) {
         if (number < 1 || number > 8) return;
-        String imagePath = "breakout/assets/" + number + ".png";
+        String imagePath = "src/assignments/breakout/assets/" + number + ".png";
         GImage image = lobby.addImage(imagePath);
         add(image);
     }

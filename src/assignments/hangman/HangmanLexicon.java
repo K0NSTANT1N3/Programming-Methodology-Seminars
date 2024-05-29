@@ -17,7 +17,7 @@ public class HangmanLexicon {
     public HangmanLexicon() throws IOException {
 		BufferedReader reader;
 		try {
-			String src = "src/assignments.hangman/lexicon/ShorterLexicon.txt"; //modify based on hierarchy of ur code
+			String src = "src/assignments/hangman/lexicon/ShorterLexicon.txt"; //modify based on hierarchy of ur code
 			FileReader fileReader = new FileReader(src);
 			reader = new BufferedReader(fileReader);
 		} catch (IOException e) {

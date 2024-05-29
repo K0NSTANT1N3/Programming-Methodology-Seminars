@@ -107,31 +107,31 @@ public class ShotaShootingGugaCanvas extends GCanvas {
 
 
     private void drawGuGaHead() {
-        loadImage("hangman/assets/gugaHead.png", 110, 79, 80);
+        loadImage("src/assignments/hangman/assets/gugaHead.png", 110, 79, 80);
     }
 
     private void drawGuGaBody() {
-        loadImage("hangman/assets/gugaBody.png", 193.01876, 30, 180);
+        loadImage("src/assignments/hangman/assets/gugaBody.png", 193.01876, 30, 180);
     }
 
     private void drawHat() {
-        loadImage("hangman/assets/hat.png", 75, 452, 75);
+        loadImage("src/assignments/hangman/assets/hat.png", 75, 452, 75);
     }
 
     private void drawHead() {
-        loadImage("hangman/assets/head.png", 85.253905714, 470, 97);
+        loadImage("src/assignments/hangman/assets/head.png", 85.253905714, 470, 97);
     }
 
     private void drawBody() {
-        loadImage("hangman/assets/body.png", 132.12890542, 450, 175);
+        loadImage("src/assignments/hangman/assets/body.png", 132.12890542, 450, 175);
     }
 
     private void drawGun() {
-        loadImage("hangman/assets/gun.png", 75, 440, 170);
+        loadImage("src/assignments/hangman/assets/gun.png", 75, 440, 170);
     }
 
     private void drawBullet() {
-        bullet = loadImage("hangman/assets/bullet.png", 70, 350, 151);
+        bullet = loadImage("src/assignments/hangman/assets/bullet.png", 70, 350, 151);
     }
 
     private void shootBullet(GImage bullet) {
@@ -143,7 +143,7 @@ public class ShotaShootingGugaCanvas extends GCanvas {
     }
 
     private void drawBlood() {
-        loadImage("hangman/assets/blood.png", 100, 90, 170);
+        loadImage("src/assignments/hangman/assets/blood.png", 100, 90, 170);
     }
 
 }
