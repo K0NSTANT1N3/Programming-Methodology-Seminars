@@ -1,0 +1,51 @@
+//ქულა: 10
+//მაქსიმალური ქულა: 15
+//შენიშვნები: არ ამოწმებ საბოლოო პასუხს რამდენად სწორია.
+//			თანაბარალბათური არ გამოდის ყველა პასუხი.
+//			ასევე გაუგებარია იმ 4 ადგილს რომ არეზერვებ მერე სად ამოწმებ რომ მაგას არ დაემთხვეს.
+//private String getPassword() {
+//	RandomGenerator rand = RandomGenerator.getInstance();
+//	String specials = "$%&@#";
+//	String password = "";
+//
+//	int size = rand.nextInt(9,16);
+//	char bigChar1 = 'A' + rand.nextInt(26);
+//	char bigChar2 = 'A' + rand.nextInt(26);
+//	int randInt = rand.nextInt(1,10);
+//	char specialSymbol = specials.charAt(rand.nextInt(0, specials.size()));
+//
+//	String allSymbol = "QWERTYUIOPASDFGHJKLZXCVBNM$%&#123456789";
+//
+//	char[] pseudo = new char[size];
+//	int a = 0;
+//	int b = 0;
+//	int c = 0;
+//	int d = 0;
+//
+//    while(a==b || b==c || c==a || a == d || b == d || c == d){
+//		a=randInt(0, size);
+//		b=randInt(0, size);
+//		c=randInt(0, size);
+//		d=randInt(0, size);
+//	}
+//
+//	pseudo[a] = bigChar1;
+//	pseudo[b] = bigChar2;
+//	pseudo[c] = randInt;
+//	pseudo[d] = specialSymbol;
+//
+//	for(int i = 0; i < size - 4; i++){
+//		char tmp = allSymbol.charAt(rand.nextInt(allSymbol.size()));
+//		if(pseudo[i] != 0)continue;
+//
+//		pseudo[i] = tmp;
+//	}
+//
+//
+//	for(int i = 0; i < pseudo.length; i++){
+//		password += (pseudo[i] +"");
+//	}
+//
+//
+//	return password;
+//}

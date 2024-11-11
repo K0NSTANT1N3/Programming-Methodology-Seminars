@@ -1,4 +1,4 @@
-/*
+package assignments.assignment2;/*
  * File: Pyramid.java
  * Name: Konstantine Endeladze
  * Section Leader: Archili
@@ -9,9 +9,8 @@
  * Board is flexible so size doesn't matter [ well it does for women ;) ]
  */
 
-import acm.graphics.*;
-import acm.program.*;
-import java.awt.*;
+import acm.graphics.GRect;
+import acm.program.GraphicsProgram;
 
 public class Pyramid extends GraphicsProgram {
 

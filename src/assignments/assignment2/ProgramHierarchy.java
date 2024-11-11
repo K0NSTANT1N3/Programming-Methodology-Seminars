@@ -1,4 +1,4 @@
-/*
+package assignments.assignment2;/*
  * File: ProgramHierarchy.java
  * Name: Konstantine Endeladze
  * Section Leader:

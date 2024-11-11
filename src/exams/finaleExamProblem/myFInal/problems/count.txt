@@ -1,0 +1,45 @@
+//ქულა: 23
+//მაქსიმალური ქულა: 25
+//
+//ვარიანტების გადარჩევა 10/10;
+//
+//
+//minLength გათვალისწინება 5/5;
+//
+//
+//დაყოფის სისწორის შემოწმება 8/10;
+//ბოლოს if-ები რა საჭიროა გაუგებარია (სტრინგებს რომ ადარებ ერთმანეთს).
+//
+//
+//private int count(String s, int minLength){
+//	int ans = 0;
+//	String primes = "2357";
+//	String nonprime = "14689";
+//
+//	int firstDelim = minLength;
+//	int secondDelim = minLength + minLength;
+//
+//	int j = minLength + minLength;
+//	for(int i = minLength; i <= s.size() - 2 * minLength; i++){
+//		for(j = i + minLength; j <= s.size() - minLength; j++){
+//			String sub1 = s.substring(0,i);
+//			String sub2 = s.substring(i,j);
+//			String sub3 = s.substring(j,s.size());
+//
+//			if(primes.contains(s.charAt(0)) &&
+//			primes.contains(s.charAt(i)) &&
+//			primes.contains(s.charAt(j)) &&
+//			nonprime.contains(s.charAt(i-1)) &&
+//			nonprime.contains(s.charAt(j-1)) &&
+//			nonprime.contains(s.charAt(s.size() - 1))){
+//				ans++;
+//				if(sub1 == sub2 || sub1 ==sub3 || sub2 == sub3){
+//					ans++;
+//					if(sub1==sub2 && sub1==sub3)ans++;
+//				}
+//			}
+//		}
+//	}
+//
+//	return ans;
+//}

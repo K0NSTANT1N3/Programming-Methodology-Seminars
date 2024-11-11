@@ -1,0 +1,67 @@
+//ქულა: 30
+//მაქსიმალური ქულა: 30
+//შენიშვნები:
+//
+//public class Employee {
+//	private String id;
+//	private String name;
+//	private int salary;
+//	private String departmentID;
+//
+//	public String getID(){
+//		return id;
+//	}
+//
+//	public String getName(){
+//		return name;
+//	}
+//
+//	public int getSalary(){
+//		return salary;
+//	}
+//
+//	public String getDepartmentID(){
+//		return departmentID;
+//	}
+//}
+//
+//public class Department {
+//	private String id;
+//	private String name;
+//
+//	public String getID(){
+//		return id;
+//	}
+//
+//	public String getName(){
+//		return name;
+//	}
+//}
+//
+//private HashMap<String, String> getSalary(Employee[] employees, Department[] departmnets){
+//	HashMap<String, String> ans = new HashMap<>();
+//
+//	for(int i = 0; i < departmnets.length; i++){
+//
+//		HashSet<Employee> worker = new HashSet<>();
+//		for(int j = 0; j < employees.length; j++){
+//			if(employees[j].getDepartmentID().equals(departmnets[i].getID())){
+//				worker.add(employees[j]);
+//			}
+//	    }
+//		if(worker.isEmpty())continue;
+//
+//		Employee best = null;
+//		int bestSalary = -1;
+//		for(Employee emp : worker){
+//			if(emp.getSalary() > bestSalary){
+//				best = emp;
+//				bestSalary = emp.getSalary();
+//			}
+//		}
+//		ans.put(departmnets[i].getName(), emp.getName());
+//
+//	}
+//
+//	return ans;
+//}

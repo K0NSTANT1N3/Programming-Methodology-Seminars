@@ -1,4 +1,4 @@
-/*
+package assignments.assignment2;/*
  * File: Hailstone.java
  * Name: Konstantine Endeladze
  * Section Leader: Archili

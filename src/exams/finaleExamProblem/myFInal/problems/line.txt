@@ -1,0 +1,38 @@
+//ქულა: 7
+//მაქსიმალური ქულა: 20
+//შენიშვნები:
+//1. წრფეების გადარჩევა (7)							- 0
+//2. წრფეზე არის თუ არა წერტილი (8)					- 0
+//3. წრფეებზე წერტილების და მაქსიმალურის დათვლა (5)	- 0
+//
+//private int array(int[] x, int[] y) {
+//	int max = 0;
+//	int brange = 100000;
+//
+//	for(int i = 0; i < x.length; i++){
+//		int xcor = x[i];
+//		int ycor = y[i];
+//
+//		if(xcor == 0){
+//			int tmp = 0;
+//			for(int j = 0; j < x.length; j++){
+//				if(x[j] == 0)tmp++;
+//			}
+//			max = Math.max(max, tmp);
+//			continue;
+//		}
+//
+//		for(int b = -brange; b <= brange; b++){
+//			double a = (ycor - b) / xcor;
+//
+//			int tmp = 0;
+//			for(int j = 0; j < x.length; j++){
+//				if(y[j] == a*x[j] + b)tmp++;
+//			}
+//			max = Math.max(max, tmp);
+//		}
+//
+//	}
+//
+//	return max;
+//}
