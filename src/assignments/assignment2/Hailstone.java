@@ -1,40 +1,37 @@
-package assignments.assignment2;/*
+/*
  * File: Hailstone.java
- * Name: Konstantine Endeladze
- * Section Leader: Archili
+ * Name:
+ * Section Leader:
  * --------------------
- * This is numerical demonstration for hailstone problem
+ * This file is the starter file for the Hailstone problem.
  */
 
 import acm.program.*;
 
 public class Hailstone extends ConsoleProgram {
     public void run() {
-        int number = readInt("Enter a number: ");
-        hailstoneProcess(number);
-    }
+        int steps = 0;
+        int num = readInt("Enter a number: ");
+        if(num <= 0) {
+            println("Number must be Natural.");
+        }else{
+            while(num != 1){
+                int pre = num;
+                steps++;
+                if(num % 2 ==0){
+                    num /= 2;
+                    println(pre+"is even, so I take half: "+num);
+                }else{
+                    num = 3*num + 1;
+                    println(pre+"is odd, so I make 3n+1:"+num);
 
-    // does hailstone process till end
-    private void hailstoneProcess(int number) {
-        int counter = 0;
-        String ascend = " is odd, so I make 3n + 1: ";
-        String descend = " is even, so I take half: ";
-        while (number > 1) {
-            counter++;
-            int current = number;
-            number = hailstoneStep(number);
-            if (number % 2 == 0) {
-                println(current + descend + number);
-            } else {
-                println(current + ascend + number);
+                }
+
             }
-        }
-        println("The process took " + counter + " to reach 1");
-    }
+            println("The process took "+ steps +" to reach 1");
 
-    // change number according to rules
-    private int hailstoneStep(int n) {
-        return (n % 2 == 0) ? n / 2 : n * 3 + 1;
+        }
+
+
     }
 }
-

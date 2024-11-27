@@ -1,89 +1,129 @@
-package assignments.assignment2;/*
+/*
  * File: ProgramHierarchy.java
- * Name: Konstantine Endeladze
+ * Name:
  * Section Leader:
  * ---------------------------
- * This file solves ProgramHierarchy problem.
+ * This file is the starter file for the ProgramHierarchy problem.
  */
 
-import acm.graphics.*;
-import acm.program.*;
-
-import java.awt.*;
+import acm.graphics.GLabel;
+import acm.graphics.GLine;
+import acm.graphics.GRect;
+import acm.program.GraphicsProgram;
 
 public class ProgramHierarchy extends GraphicsProgram {
 
-    private static final int SQUARE_WIDTH = 150;
-    private static final int SQUARE_HEIGHT = 60;
-    private static final int GAP = 40;
-    private static final String TITLE_0 = "Program";
-    private static final String TITLE_1 = "GraphicsProgram";
-    private static final String TITLE_2 = "ConsoleProgram";
-    private static final String TITLE_3 = "DialogProgram";
-    private static final int TEXT_FONT = 14;
+
+
+    /** Width of each brick in pixels */
+    private static final int WINDOW_WIDTH = 174;
+    /** Height of each brick in pixels */
+    private static final int WINDOW_HEIGHT = 88;
+
+
+
 
     public void run() {
-        drawBoxes();
-        drawLines();
+        drawUpClass();
+        drawLowerClass();
+        connectLines();
+        addProgram();
+        addGraphicsProgram();
+        addConsoleProgram();
+        addDialogProgram();
     }
 
-    //responsible for connecting all boxes
-    private void drawLines(){
-        double centerX = getWidth() / 2;
-        double centerY = getHeight() / 2;
 
-        double topY = centerY - GAP / 2;
-        double bottomY = centerY + GAP / 2;
 
-        double leftX = centerX - GAP - SQUARE_WIDTH;
-        double rightX = centerX + GAP + SQUARE_WIDTH;
+    // adds text in the last box of Lowerclass.
+    private void addDialogProgram() {
+        int startX = (getWidth()- WINDOW_WIDTH)/2;  //x coordinate of UpClass box.
+        int startY = (getHeight()- 3*WINDOW_HEIGHT)/2;   //y coordinate of UpClass box.
+        int dif = WINDOW_HEIGHT / 2 + WINDOW_WIDTH;   // difference between LowerClass boxes.
+        GLabel dialogProgram = new GLabel("DialogProgram");
+        double midY = (WINDOW_HEIGHT - dialogProgram.getAscent())/2;
+        double midX = (WINDOW_WIDTH - dialogProgram.getWidth())/2;
+        add(dialogProgram,startX + dif + midX,startY + 2*WINDOW_HEIGHT + 1.5*midY);
 
-        GLine line1 = new GLine(centerX, topY, leftX, bottomY);
-        GLine line2 = new GLine(centerX, topY, centerX, bottomY);
-        GLine line3 = new GLine(centerX, topY, rightX, bottomY);
-
-        add(line1);
-        add(line2);
-        add(line3);
     }
 
-    //responsible for drawing all box in hierarchy
-    private void drawBoxes(){
-        double centerX = getWidth() / 2;
-        double centerY = getHeight() / 2;
 
-        double middleX = centerX - SQUARE_WIDTH / 2;
-        double leftX = middleX - GAP - SQUARE_WIDTH;
-        double rightX = middleX + SQUARE_WIDTH + GAP;
 
-        double topY = centerY - SQUARE_HEIGHT - GAP / 2;
-        double bottomY = centerY + GAP / 2;
+    //adds text in the second box of Lowerclass.
+    private void addConsoleProgram() {
+        int startX = (getWidth()- WINDOW_WIDTH)/2;
+        int startY = (getHeight()- 3*WINDOW_HEIGHT)/2;
+        GLabel consoleProgram = new GLabel("ConsoleProgram");
+        double midY = (WINDOW_HEIGHT - consoleProgram.getAscent())/2;
+        double midX = (WINDOW_WIDTH - consoleProgram.getWidth())/2;
+        add(consoleProgram,startX + midX,startY + 2*WINDOW_HEIGHT + 1.5*midY);
 
-        drawBox(middleX, topY, TITLE_0);
-        drawBox(leftX, bottomY, TITLE_1);
-        drawBox(middleX, bottomY, TITLE_2);
-        drawBox(rightX, bottomY, TITLE_3);
     }
 
-    //draws one box
-    private void drawBox(double x, double y, String title) {
-        drawRectangle(x, y);
-        drawText(x, y, title);
+
+
+    //adds text in the first box of Lowerclass.
+    private void addGraphicsProgram() {
+        int startX = (getWidth()- WINDOW_WIDTH)/2;
+        int startY = (getHeight()- 3*WINDOW_HEIGHT)/2;
+        int dif = WINDOW_HEIGHT / 2 + WINDOW_WIDTH;
+        GLabel graphicsProgram = new GLabel("GraphicsProgram");
+        double midY = (WINDOW_HEIGHT - graphicsProgram.getAscent())/2;
+        double midX = (WINDOW_WIDTH - graphicsProgram.getWidth())/2;
+        add(graphicsProgram,startX - dif + midX,startY + 2*WINDOW_HEIGHT + 1.5*midY);
+
     }
 
-    //draws square
-    private void drawRectangle(double x, double y) {
-        GRect rect = new GRect(SQUARE_WIDTH, SQUARE_HEIGHT);
-        add(rect, x, y);
+
+
+    //adds text in the Upclass box.
+    private void addProgram() {
+        int startX = (getWidth()- WINDOW_WIDTH)/2;
+        int startY = (getHeight()- 3*WINDOW_HEIGHT)/2;
+        GLabel program = new GLabel("Program");
+        double midY = (WINDOW_HEIGHT - program.getAscent())/2;
+        double midX = (WINDOW_WIDTH - program.getWidth())/2;
+        add(program,startX + midX, startY + 1.5*midY);
+
     }
 
-    //draws text
-    private void drawText(double x, double y, String title) {
-        GLabel label = new GLabel(title);
-        label.setFont(new Font("SansSerif", Font.PLAIN, TEXT_FONT));
-        double labelX = x + (SQUARE_WIDTH - label.getWidth()) / 2;
-        double labelY = y + (SQUARE_HEIGHT + label.getAscent()) / 2;
-        add(label, labelX, labelY);
+
+
+    // connects boxes with lines.
+    private void connectLines() {
+        int startX = (getWidth()- WINDOW_WIDTH)/2;
+        int startY = (getHeight()- 3*WINDOW_HEIGHT)/2;
+        int dif = WINDOW_HEIGHT / 2 + WINDOW_WIDTH;
+        for(int i = 0; i < 3; i++){
+            GLine connect = new GLine(startX + WINDOW_WIDTH/2,startY + WINDOW_HEIGHT, startX + (i-1)*dif + WINDOW_WIDTH/2 ,startY + 2*WINDOW_HEIGHT);
+            add(connect);
+        }
     }
+
+
+
+    // draws 3 boxes in LowerClass.
+    private void drawLowerClass() {
+        int startX = (getWidth()- WINDOW_WIDTH)/2;
+        int startY = (getHeight()- 3*WINDOW_HEIGHT)/2;
+        int dif = WINDOW_HEIGHT / 2 + WINDOW_WIDTH;
+        for(int i = 0; i < 3; i++){
+            GRect rect = new GRect(WINDOW_WIDTH,WINDOW_HEIGHT);
+            int x = startX + (i-1)*dif;
+            add(rect, x ,startY + 2*WINDOW_HEIGHT);
+        }
+
+    }
+
+
+
+    //draws Up class box.
+    private void drawUpClass() {
+        int startX = (getWidth()- WINDOW_WIDTH)/2;
+        int startY = (getHeight()- 3*WINDOW_HEIGHT)/2;
+        GRect head= new GRect (WINDOW_WIDTH,WINDOW_HEIGHT);
+        add(head,startX,startY);
+    }
+
+
 }
-

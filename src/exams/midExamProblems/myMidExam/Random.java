@@ -8,16 +8,14 @@ import java.awt.event.MouseEvent;
 
 public class Random extends GraphicsProgram {
 	
-	private static final int BALL_COUNT = 20;
+	private static final int BALL_COUNT = 30;
 	
-	private static final int MIN_RADIUS = 2;
+	private static final int MIN_RADIUS = 8;
 	
-	private static final int MAX_RADIUS = 10;
+	private static final int MAX_RADIUS = 30;
 	
 	private static final int V_Y = 3;
 
-
-	
 	private RandomGenerator rand = RandomGenerator.getInstance();
 	private GOval lastBall;
 	private boolean falling = false;
@@ -41,14 +39,12 @@ public class Random extends GraphicsProgram {
 		}
 	}
 
-
 	@Override
 	public void mouseClicked(MouseEvent e){
 		double x = e.getX();
 		double y = e.getY();
 		 
 		if(getElementAt(x, y) != null){
-		
 			GOval curBall = (GOval) getElementAt(x, y);
 			if(curBall != lastBall){
 				falling = false;
@@ -67,12 +63,10 @@ public class Random extends GraphicsProgram {
 		for(int i = 0; i < BALL_COUNT; i++){
 			int radius = rand.nextInt(MIN_RADIUS, MAX_RADIUS);
 			int x = rand.nextInt(0, getWidth() - 2 * radius);
-			int y = rand.nextInt(0, getHeight() - 2 * radius);
+			int y = rand.nextInt( 2 * radius, getHeight());
 			GOval ball = new GOval(2 * radius, 2 * radius);
 			ball.setFilled(true);
 			add(ball, x, y);
 		}
 	}
-	
-	
 }

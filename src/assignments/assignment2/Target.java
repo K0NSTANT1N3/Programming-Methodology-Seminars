@@ -1,36 +1,67 @@
 /*
  * File: Target.java
- * Name: Konstantine Endeladze
- * Section Leader: 
+ * Name:
+ * Section Leader:
  * -----------------
- * This file draws target.
+ * This file is the starter file for the Target problem.
  */
 
 import acm.graphics.*;
+
 import acm.program.*;
+
 import java.awt.*;
 
 public class Target extends GraphicsProgram {
 
-	//2.54 cm radius
-	private static final double RADIUS1 = 96;
-	// 1.65 cm radius
-	private static final double RADIUS2 = 62.3622047;
-	// 0.76 cm radius
-	private static final double RADIUS3 = 28.724409449;
 
-	//draw three circle idividually
-	public void run() {
-		drawCircle(RADIUS1, 1);
-		drawCircle(RADIUS2, 0);
-		drawCircle(RADIUS3, 1);
+
+	private static final int L_RADI = 32;//radius of big circle.
+	private static final double M_RADI = L_RADI*((1.65)/(2.54));//radius of medium circle.
+	private static final double S_RADI = L_RADI*((0.76)/(2.54));//radius of small circle.
+
+
+
+
+
+	public void run(){
+		drawBigCircle();
+		drawMediumCircle();
+		drawSmallCircle();
+
 	}
 
-	//takes radius and color and draws circle in center
-	private void drawCircle(double radius, int color) {
-		GOval target = new GOval(2 * radius, 2 * radius);
-		target.setFilled(true);
-		target.setColor(color == 1? Color.RED: Color.white);
-		add(target, getWidth() / 2 - radius, getHeight() / 2 - radius);
+
+
+
+	private void drawSmallCircle() {
+		GOval small = new GOval(S_RADI*2,S_RADI*2);
+		small.setFilled(true);
+		small.setFillColor(Color.RED);
+		add(small,getWidth() / 2 - S_RADI,getHeight() / 2 - S_RADI);
+
+
+	}
+
+
+
+
+	private void drawMediumCircle() {
+		GOval medium = new GOval(M_RADI*2,M_RADI*2);
+		medium.setFilled(true);
+		medium.setFillColor(Color.WHITE);
+		add(medium,getWidth() / 2 - M_RADI,getHeight() / 2 - M_RADI);
+
+	}
+
+
+
+
+	private void drawBigCircle() {
+		GOval large = new GOval(L_RADI*2,L_RADI*2);
+		large.setFilled(true);
+		large.setFillColor(Color.RED);
+		add(large,getWidth() / 2 - L_RADI,getHeight() / 2 - L_RADI);
+
 	}
 }

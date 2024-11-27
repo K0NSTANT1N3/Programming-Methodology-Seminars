@@ -1,26 +1,30 @@
 /*
  * File: PythagoreanTheorem.java
- * Name: Konstantine Endeladze
- * Section Leader: 
+ * Name:
+ * Section Leader:
  * -----------------------------
- * This file finds hipotenusis in pythagorean problem.
+ * This file is the starter file for the PythagoreanTheorem problem.
  */
 
 import acm.program.*;
 
 public class PythagoreanTheorem extends ConsoleProgram {
 	public void run() {
-		int a = readInt("a: ");
-		int b = readInt("b: ");
-
-		double c = findHipotenus(a, b);
-		println("c = " + c);
+		println("Enter values to compute hypotenuse.");
+		int a = readInt("Enter a: ");
+		int b = readInt("Enter b:");
+		if((a > 0)&&(b > 0)){
+			println("The hypotenuse equals "+ calcHyp(a,b) +".");
+		}else{
+			println("Wrong number, length must be positive.");
+		}
 	}
 
-	// calculates square root of sum of two integer
-	private double findHipotenus(int a, int b){
-		double SquaredC = a * a * 1.0 + b * b;
-		double c = Math.sqrt(SquaredC);
+
+	//calculates hypotenuse.
+	private double calcHyp(int a,int b) {
+		double c = Math.sqrt(a*a + b*b);
 		return c;
+
 	}
 }

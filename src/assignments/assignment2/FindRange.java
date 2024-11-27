@@ -1,35 +1,38 @@
-package assignments.assignment2;/*
+/*
  * File: FindRange.java
- * Name: Konstantine Endeladze
- * Section Leader: 
+ * Name:
+ * Section Leader:
  * --------------------
- * This file solves FindRange problem.
+ * This file is the starter file for the FindRange problem.
  */
 
 import acm.program.*;
 
 public class FindRange extends ConsoleProgram {
+
 	private static final int SENTINEL = 0;
 
 	public void run() {
-		println("This program finds the largest and smallest numbers");
+		int start = readInt("Enter numbers: "); // first number entered by user.
+		int max = start;
+		int min = start;
+		if(start == SENTINEL){
+			println("This number stops program. Enter other integers.");
+		}else{
+			while(true){
+				int num = readInt("Enter integer: ");
+				if(num == SENTINEL){
+					println("max="+max+", min="+min);
+					break;
+				}
 
-		//stop the program if x is SENTINEL
-		int x = readInt(), max, min;
-		if(x==SENTINEL)println("No min or max is inputed");
+				if(max <= num) max = num;   //determines if new number is more than max.
+				if(min >= num) min = num;   //determines if new number is less tha min.
 
-		else{
-			min = max = x;
-			//change min and max untill x is equal to SENTINEL
-			while(x != SENTINEL){
-				max = max < x ? x: max;
-				min = min > x ? x: min;
-				x = readInt();
 			}
-			//print answer
-			println("smallest: " + min);
-			println("biggest: " + max);
 		}
+
+
 	}
 }
 
