@@ -1,3 +1,6 @@
 [submodule "abstactions"]
 	path = abstactions
 	url = https://github.com/K0NSTANT1N3/Abstractions
+[submodule "abstractions"]
+	path = abstractions
+	url = https://github.com/K0NSTANT1N3/Abstractions.git
