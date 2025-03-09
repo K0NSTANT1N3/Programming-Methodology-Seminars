@@ -14,8 +14,8 @@ import java.io.IOException;
 public class Hangman extends ConsoleProgram {
 
     private HangmanLexicon lexicon;
-    private ShotaShootingGugaCanvas canvas;
-    private HangmanCanvas canvas1;
+    private ShotaShootingGugaCanvas canvas1;
+    private HangmanCanvas canvas;
 
     private RandomGenerator rand;
 
@@ -28,7 +28,8 @@ public class Hangman extends ConsoleProgram {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        canvas = new ShotaShootingGugaCanvas();
+        canvas = new
+                HangmanCanvas();
         add(canvas);
     }
 

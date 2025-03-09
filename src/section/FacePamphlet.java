@@ -1,5 +1,4 @@
-package section;
-/* 
+package section;/*
  * File: FacePamphlet.java
  * -----------------------
  * When it is finished, this program will implement a basic social network
@@ -10,244 +9,179 @@ import acm.program.*;
 import acm.graphics.*;
 import acm.util.*;
 import java.awt.event.*;
-import java.util.Iterator;
-
 import javax.swing.*;
 
-public class FacePamphlet extends Program implements FacePamphletConstants {
-
-	private JButton add = null;
-	private JButton delete = null;
-	private JButton lookup = null;
-	private JButton changeStatus = null;
-	private JButton changePicture = null;
-	private JButton addFriend = null;
-	private JLabel name = null;
-	private JTextField nameField = null;
-	private JTextField statusField = null;
-	private JTextField friendField = null;
-	private JTextField pictureField = null;
-	private FacePamphletDatabase database = new FacePamphletDatabase();
-	private String currentProfile = "";
-	private FacePamphletCanvas canvas;
+public class FacePamphlet extends Program 
+					implements FacePamphletConstants {
 
 	/**
-	 * This method has the responsibility for initializing the interactors in
-	 * the application
+	 * This method has the responsibility for initializing the 
+	 * interactors in the application, and taking care of any other 
+	 * initialization that needs to be performed.
 	 */
 	public void init() {
-		canvas = new FacePamphletCanvas();
-		add(canvas);
-		createButtons();
+		designWindow();
 		addActionListeners();
+		
+    }
+
+	
+
+
+	private void designWindow() {
+		north();
+		west();
+		
 	}
 
-	/**
-	 * This method creates and adds buttons to the needed place and adds action
-	 * listeners and action commands
-	 */
-	private void createButtons() {
-		add = new JButton("Add");
-		add.setActionCommand("add");
 
-		delete = new JButton("Delete");
-		delete.setActionCommand("delete");
 
-		lookup = new JButton("Lookup");
-		lookup.setActionCommand("lookup");
 
-		changeStatus = new JButton("Change Status");
-		changeStatus.setActionCommand("changeStatus");
-
-		changePicture = new JButton("Change Picture");
-		changePicture.setActionCommand("changePicture");
-
-		addFriend = new JButton("Add Friend");
-		addFriend.setActionCommand("addFriend");
-
-		name = new JLabel("Name");
-
-		nameField = new JTextField(TEXT_FIELD_SIZE);
-
+	private void west() {
 		statusField = new JTextField(TEXT_FIELD_SIZE);
-		statusField.setActionCommand("statusField");
 		statusField.addActionListener(this);
-
-		friendField = new JTextField(TEXT_FIELD_SIZE);
-		friendField.setActionCommand("friendField");
-		friendField.addActionListener(this);
-
+		
 		pictureField = new JTextField(TEXT_FIELD_SIZE);
-		pictureField.setActionCommand("pictureField");
 		pictureField.addActionListener(this);
-
-		add(name, NORTH);
-		add(nameField, NORTH);
-		add(add, NORTH);
-		add(delete, NORTH);
-		add(lookup, NORTH);
-		add(statusField, WEST);
-		add(changeStatus, WEST);
-		add(new JLabel(EMPTY_LABEL_TEXT), WEST);
-		add(pictureField, WEST);
-		add(changePicture, WEST);
-		add(new JLabel(EMPTY_LABEL_TEXT), WEST);
-		add(friendField, WEST);
-		add(addFriend, WEST);
+		
+		friendField = new JTextField(TEXT_FIELD_SIZE);
+		friendField.addActionListener(this);
+		
+		status = new JButton("Change Status");
+		picture = new JButton("Change Picture");
+		friend = new JButton("Add Friend");
+		add(statusField,WEST);
+		add(status,WEST);
+		add(new JLabel(EMPTY_LABEL_TEXT),WEST);
+		add(pictureField,WEST);
+		add(picture,WEST);
+		add(new JLabel(EMPTY_LABEL_TEXT),WEST);
+		add(friendField,WEST);
+		add(friend,WEST);
+		
 	}
 
+
+
+
+	private void north() {
+		name = new JLabel("Name");
+		nameField = new JTextField(TEXT_FIELD_SIZE);
+		nameField.addActionListener(this);
+		add = new JButton("Add");
+		delete = new JButton("Delete");
+		lookup = new JButton("Lookup");
+		add(name,NORTH);
+		add(nameField,NORTH);
+		add(add,NORTH);
+		add(delete,NORTH);
+		add(lookup,NORTH);
+		
+	}
+
+
+
+
 	/**
-	 * This method is responsible for detecting when the buttons are clicked or
-	 * interactors are used
-	 */
-	public void actionPerformed(ActionEvent e) {
-		String cmd = e.getActionCommand();
-		if (cmd.equals("add") && !nameField.getText().equals("")) {
-			addProfile(nameField.getText());
-		}
-		if (cmd.equals("delete") && !nameField.getText().equals("")) {
-			deleteProfile(nameField.getText());
-		}
-		if (cmd.equals("lookup") && !nameField.getText().equals("")) {
-			lookupProfile(nameField.getText());
-		}
-		if (cmd.equals("changeStatus") || cmd.equals("statusField")) {
-			if (!statusField.getText().equals("")) {
-				changeStatus(statusField.getText());
+     * This class is responsible for detecting when the buttons are
+     * clicked or interactors are used, so you will have to add code
+     * to respond to these actions.
+     */
+    public void actionPerformed(ActionEvent e) {
+		if(e.getActionCommand().equals("Add")){
+		
+			FacePamphletProfile user = new FacePamphletProfile(nameField.getText());
+			curProfile = database.getProfile(nameField.getText());
+			if(database.containsProfile(nameField.getText())){
+				database.addProfile(user);
+				message = "A profile Already exists for " + curProfile.getName();
+				
+			}else{
+				database.addProfile(user);
+				message = "";
+				
 			}
 		}
-		if (cmd.equals("changePicture") || cmd.equals("pictureField")) {
-			if (!pictureField.getText().equals("")) {
-				changePicture(pictureField.getText());
+		
+		
+		if(e.getActionCommand().equals("Delete")){
+			
+			curProfile = null;
+			if(database.containsProfile(nameField.getText())){
+				database.deleteProfile(nameField.getText());
+				message = "Profile for " + nameField.getText() + " was deleted.";
 			}
 		}
-		if (cmd.equals("addFriend") || cmd.equals("friendField")) {
-			if (!friendField.getText().equals("")) {
-				addFriend(friendField.getText());
+		
+		
+		if(e.getActionCommand().equals("Lookup")){
+			
+			if(database.containsProfile(nameField.getText())){
+				
+				curProfile = database.getProfile(nameField.getText());
+				message = "";
+			}else {
+				
+				curProfile = null;
+				message = "The profile for " + nameField.getText() + " does not exist.";
 			}
 		}
-	}
-
-	/**
-	 * If the button add was pressed if the profile already does not exist with
-	 * entered name this method creates the profile with entered name
-	 */
-	private void addProfile(String name) {
-		if (database.containsProfile(name)) {
-			canvas.showMessage("A profile with the name " + name + " already exists");
-		} else {
-			currentProfile = name;
-			database.addProfile(new FacePamphletProfile(name));
-			canvas.displayProfile(database.getProfile(name));
-			canvas.showMessage("New profile created");
-			nameField.setText("");
+		
+		
+		if(e.getActionCommand().equals("Change Status") 
+				|| e.getSource() == statusField){
+			
+			curProfile.setStatus(statusField.getText());
+			message = "";
 		}
-	}
-
-	/**
-	 * This method deletes the profile with the name entered if it exists in
-	 * database if it does not message appears saying that
-	 */
-	private void deleteProfile(String name) {
-		if (database.containsProfile(name)) {
-			database.deleteProfile(name);
-			canvas.removeAll();
-			canvas.showMessage("Profile of " + name + " was deleted");
-			currentProfile = "";
-		} else {
-			canvas.showMessage("Profile with name " + name + " does not exist");
-		}
-		nameField.setText("");
-	}
-
-	/**
-	 * This method displays the profile with the name which was entered in the
-	 * name field if it exists if not it writes a message saying that
-	 */
-	private void lookupProfile(String name) {
-		if (database.containsProfile(name)) {
-			currentProfile = name;
-			canvas.displayProfile(database.getProfile(currentProfile));
-			canvas.showMessage("Dislplaying " + name + "'s profile");
-		} else {
-			canvas.removeAll();
-			canvas.showMessage("Profile with name " + name + " does not exist");
-		}
-		nameField.setText("");
-	}
-
-	/**
-	 * This method changes status to the text that was entered in the status
-	 * textField
-	 */
-	private void changeStatus(String text) {
-		if (currentProfile == "") {
-			canvas.showMessage("Please select a profile to change status");
-		} else {
-			database.getProfile(currentProfile).setStatus(text);
-			canvas.displayProfile(database.getProfile(currentProfile));
-			canvas.showMessage("Status updated to " + text);
-		}
-		statusField.setText("");
-	}
-
-	/**
-	 * This method changes picture to the picture with the filename that was
-	 * entered if it exists if not it writs message saying that
-	 */
-	private void changePicture(String filename) {
-		GImage image = null;
-		try {
-			image = new GImage(filename);
-			database.getProfile(currentProfile).setImage(image);
-			canvas.displayProfile(database.getProfile(currentProfile));
-			canvas.showMessage("Picture updated");
-		} catch (ErrorException ex) {
-			canvas.showMessage("Unable to open image file: " + filename);
-		}
-		pictureField.setText("");
-	}
-
-	/**
-	 * This method adds friend to the profile's database if the friend has a
-	 * profile him/herself if there's no profile with an entered name this
-	 * method displays a message saying that if the friend is already in the
-	 * friends database method displays the message saying that this method also
-	 * adds a current profile as a friend in the profile with entered name
-	 */
-	private void addFriend(String name) {
-		if (currentProfile == "") {
-			canvas.showMessage("Please select a profile to add friend");
-		} else if (checkIfFriend(name)) {
-			canvas.showMessage(currentProfile + " already has " + name + " as a friend");
-		} else {
-			if (database.containsProfile(name) && !name.equals(currentProfile)) {
-				database.getProfile(currentProfile).addFriend(name);
-				database.getProfile(name).addFriend(currentProfile);
-				canvas.displayProfile(database.getProfile(currentProfile));
-				canvas.showMessage(name + " added as a friend");
-			}
-			if (!database.containsProfile(name))
-				canvas.showMessage(name + " does not exist");
-		}
-		friendField.setText("");
-	}
-
-	/**
-	 * This method returns true or false depending if the friend with entered
-	 * name is in current profiles database
-	 */
-	private boolean checkIfFriend(String name) {
-		Iterator<String> friends = database.getProfile(currentProfile).getFriends();
-		while (true) {
-
-			if (!friends.hasNext()) {
-				break;
-			}
-			if (friends.next().equals(name)) {
-				return true;
+		
+		
+		if(e.getActionCommand().equals("Change Picture") || e.getSource() == pictureField){
+			
+			GImage image = null;
+			if(curProfile != null){
+				try{
+					image = new GImage(pictureField.getText());
+					curProfile.setImage(image);	
+					message = "";
+				}catch(ErrorException ex){
+					image = null;
+					message = "Sorry, we cannot find and image with this name";
+				}
 			}
 		}
-		return false;
+		
+		
+		if(e.getActionCommand().equals("Add Friend") || e.getSource() == friendField){
+			
+			if(curProfile.addFriend(friendField.getText()) == true){
+				database.getProfile(friendField.getText()).addFriend(curProfile.getName());	
+				message = "";
+			}else message = "A profile does not yet exist for " + friendField.getText();
+		}
+		
+		canvas.displayProfile(curProfile);
+		canvas.showMessage(message);
+				
 	}
+
+
+
+
+private JLabel name;
+private JTextField nameField;
+private JButton add;
+private JButton delete;
+private JButton lookup;
+private JTextField statusField;
+private JButton status;
+private JTextField pictureField;
+private JButton picture;
+private JTextField friendField;
+private JButton friend;
+private String message = "";
+
+private FacePamphletDatabase database = new FacePamphletDatabase();
+private FacePamphletProfile curProfile;
+private FacePamphletCanvas canvas= new FacePamphletCanvas();
 }

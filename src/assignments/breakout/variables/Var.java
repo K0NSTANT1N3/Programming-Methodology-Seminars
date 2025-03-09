@@ -19,8 +19,8 @@ public final class Var {
     /**
      * Dimensions of the paddle
      */
-    public static final int PADDLE_WIDTH = 60;
-    public static final int PADDLE_HEIGHT = 10;
+    public static final int PADDLE_WIDTH = 80;
+    public static final int PADDLE_HEIGHT = 20;
 
     /**
      * Offset of the paddle up from the bottom
@@ -30,17 +30,17 @@ public final class Var {
     /**
      * Number of bricks per row
      */
-    public static final int NBRICKS_PER_ROW = 10;
+    public static final int NBRICKS_PER_ROW = 7;
 
     /**
      * Number of rows of bricks
      */
-    public static final int NBRICK_ROWS = 10;
+    public static final int NBRICK_ROWS = 5;
 
     /**
      * number of super bricks
      */
-    public static final int SUPER_BRICK_NUM = 40;
+    public static final int SUPER_BRICK_NUM = 80;
     /**
      * Separation between bricks
      */
@@ -54,7 +54,7 @@ public final class Var {
     /**
      * Height of a brick
      */
-    public static final int BRICK_HEIGHT = 8;
+    public static final int BRICK_HEIGHT = 5;
 
     /**
      * Radius of the ball in pixels

@@ -101,7 +101,7 @@ public class FacePamphlet extends Program
 
     private void handlePictureButton() {
         if (currentProfile != null) {
-            String imagePath = "src/assignments/facePamphlet/images/" + pictureTextField.getText(); // modify this line based on your image path
+            String imagePath = pictureTextField.getText(); // modify this line based on your image path
             try {
                 GImage image = new GImage(imagePath, IMAGE_WIDTH, IMAGE_HEIGHT);
                 image.setSize(IMAGE_WIDTH, IMAGE_HEIGHT);

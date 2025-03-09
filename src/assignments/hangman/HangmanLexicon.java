@@ -13,17 +13,15 @@ import java.util.ArrayList;
 public class HangmanLexicon {
 
     ArrayList<String> wordContainer;
-
     public HangmanLexicon() throws IOException {
 		BufferedReader reader;
 		try {
-			String src = "src/assignments/hangman/lexicon/ShorterLexicon.txt"; //modify based on hierarchy of ur code
+			String src = "src/assignments/hangman/lexicon/ShorterLexicon.txt";
 			FileReader fileReader = new FileReader(src);
 			reader = new BufferedReader(fileReader);
 		} catch (IOException e) {
 			throw new IOException(e);
 		}
-
 		wordContainer = new ArrayList<>();
 		String word;
 		while ((word = reader.readLine()) != null) {

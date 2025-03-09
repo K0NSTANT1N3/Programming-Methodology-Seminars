@@ -1,152 +1,163 @@
-package section.hangman;/*
- * File: HangmanCanvas.java
- * ------------------------
- * This file keeps track of the Hangman display.
- */
+package section.hangman;
 
 import acm.graphics.*;
 
 public class HangmanCanvas extends GCanvas {
 
-	/** Resets the display so that only the scaffold appears */
+	GLabel currentword = new GLabel(""); // Current word status
+	GLabel incorrectLetters = new GLabel(""); // Displays letters entered
+												// incorrectly by the player.
+	String mistakes = "";
+
+	// Restart the game.
 	public void reset() {
 		removeAll();
-		label.setLabel("");
-		drawScaffold();
-	}
-	
-	// draws the scaffold 
-	private void drawScaffold() {
-		double y1 = (getHeight() - SCAFFOLD_HEIGHT - SCAFFOLD_MARGIN_BOTTOM) / 2.0;
-		double x1 = (getWidth() - BEAM_LENGTH - UPPER_ARM_LENGTH) / 2.0;
-		
-		addLine(x1,y1,x1,y1 + SCAFFOLD_HEIGHT);
-		addLine(x1,y1,x1 + BEAM_LENGTH,y1);
-		addLine(x1 + BEAM_LENGTH,y1,x1 + BEAM_LENGTH,y1 + ROPE_LENGTH);
-	}
-	
-	
-	// function that creates and adds line between (x1 y1 x2 y2) coordinates
-	private void addLine(double x1, double y1, double x2, double y2) {
-		GLine line = new GLine(x1,y1,x2,y2);
-		add(line);
+		mistakes = "";
+		revalidate();
+		draw(); // Draws the initial situation of the game.
 	}
 
-/**
- * Updates the word on the screen to correspond to the current
- * state of the game.  The argument string shows what letters have
- * been guessed so far; unguessed letters are indicated by hyphens.
- */
+	// Coordinates of scaffold, beam and rope.
+	private void draw() {
+		double x1 = getWidth() / 2;
+		double y1 = getHeight() / 50;
+		double x2 = x1;
+		double y2 = y1 + ROPE_LENGTH;
+
+		GLine rope = new GLine(x1, y1, x2, y2);
+		add(rope);
+
+		double x3 = x1;
+		double y3 = y1;
+		double x4 = x1 - BEAM_LENGTH;
+		double y4 = y3;
+
+		GLine beam = new GLine(x3, y3, x4, y4);
+		add(beam);
+
+		double x5 = x4;
+		double y5 = y4;
+		double x6 = x5;
+		double y6 = y5 + SCAFFOLD_HEIGHT;
+
+		GLine scaffold = new GLine(x5, y5, x6, y6);
+		add(scaffold);
+	}
+
+	// A word composed of the letters guessed by the player is written on the
+	// canvas.
 	public void displayWord(String word) {
-		wordDisplay.setLabel(word);
-		wordDisplay.setFont("Arial-30");
-		double cordX = (getWidth() - wordDisplay.getWidth()) / 2.0;
-		double cordY = getHeight() - label.getHeight() - 5;
-		add(wordDisplay,cordX,cordY);
+		currentword.setLabel(word);
+		currentword.setFont(new java.awt.Font("Arial", 4, 30));
+		add(currentword, 50, getHeight() - 50);
 	}
 
-/**
- * Updates the display to correspond to an incorrect guess by the
- * user.  Calling this method causes the next body part to appear
- * on the scaffold and adds the letter to the list of incorrect
- * guesses that appears at the bottom of the window.
- */
-	public void noteIncorrectGuess(char letter, int lives) {
-		addLetterToList(letter);
-		drawHangman(lives);
-	}
-	
-	// for each lost life draws body parts using the scaffold coordinate(x1,y1)
-	private void drawHangman(int lives) {
-		double y1 = (getHeight() - SCAFFOLD_HEIGHT - SCAFFOLD_MARGIN_BOTTOM) / 2.0;
-		double x1 = (getWidth() - BEAM_LENGTH - UPPER_ARM_LENGTH) / 2.0;
-		
-		if(lives == 7)drawHead(x1,y1);
-		else if(lives == 6)drawBody(x1,y1);	
-		else if(lives == 5) drawLeftHand(x1,y1);
-		else if(lives == 4)drawRightHand(x1,y1);
-		else if(lives == 3)drawLeftLeg(x1,y1);
-		else if(lives == 2)drawRightLeg(x1,y1);
-		else if(lives == 1)drawLeftFoot(x1,y1);
-		else if(lives == 0)drawRightFoot(x1,y1);
-	
-	}
-	
-	private void drawHead(double x1, double y1) {
-		GOval head = new GOval(HEAD_RADIUS * 2,HEAD_RADIUS * 2);
-		add(head, x1 + BEAM_LENGTH - HEAD_RADIUS, y1+ROPE_LENGTH);
+	// Writes the letters entered incorrectly by the player on the canvas.
+	public void noteIncorrectGuess(String letter) {
+
+		mistakes += letter;
+		incorrectLetters.setLabel(mistakes);
+		incorrectLetters.setFont(new java.awt.Font("Arial", 4, 20));
+		add(incorrectLetters, 50, getHeight() - 20);
 	}
 
-	private void drawBody(double x1, double y1) {
-		double bodyX = x1 + BEAM_LENGTH;
-		double bodyY = y1+ROPE_LENGTH + 2 * HEAD_RADIUS;
-		
-		addLine(bodyX,bodyY,bodyX,bodyY + BODY_LENGTH);
+	public void drawHead() {
+		GOval head = new GOval(2 * HEAD_RADIUS, 2 * HEAD_RADIUS);
+		add(head, getWidth() / 2 - HEAD_RADIUS, getHeight() / 50 + ROPE_LENGTH);
 	}
 
-	private void drawLeftHand(double x1, double y1) {
-		double handX = x1 + BEAM_LENGTH;
-		double handY = y1+ROPE_LENGTH + 2 * HEAD_RADIUS + ARM_OFFSET_FROM_HEAD;
-		
-		addLine(handX,handY,handX - UPPER_ARM_LENGTH,handY);
-		addLine(handX - UPPER_ARM_LENGTH,handY,
-				handX - UPPER_ARM_LENGTH,handY + LOWER_ARM_LENGTH);
+	public void drawBody() {
+		double x1 = getWidth() / 2;
+		double y1 = getHeight() / 50 + ROPE_LENGTH + 2 * HEAD_RADIUS;
+		double x2 = getWidth() / 2;
+		double y2 = y1 + BODY_LENGTH;
+		GLine body = new GLine(x1, y1, x2, y2);
+		add(body);
 	}
 
-	private void drawRightHand(double x1, double y1) {
-		double handX = x1 + BEAM_LENGTH;
-		double handY = y1+ROPE_LENGTH + 2 * HEAD_RADIUS + ARM_OFFSET_FROM_HEAD;
-		addLine(handX,handY,handX + UPPER_ARM_LENGTH,handY);
-		addLine(handX + UPPER_ARM_LENGTH,handY,
-				handX + UPPER_ARM_LENGTH,handY + LOWER_ARM_LENGTH);
+	public void drawLeftHand() {
+		double x1 = getWidth() / 2;
+		double y1 = getHeight() / 50 + ROPE_LENGTH + 2 * HEAD_RADIUS + ARM_OFFSET_FROM_HEAD;
+		double x2 = x1 - UPPER_ARM_LENGTH;
+		double y2 = getHeight() / 50 + ROPE_LENGTH + 2 * HEAD_RADIUS + ARM_OFFSET_FROM_HEAD;
+		double x3 = x2;
+		double y3 = y2 + LOWER_ARM_LENGTH;
+
+		GLine leftHand = new GLine(x1, y1, x2, y2);
+		add(leftHand);
+
+		GLine leftWrist = new GLine(x2, y2, x3, y3);
+		add(leftWrist);
 	}
 
-	private void drawLeftLeg(double x1, double y1) {
-		double legX = x1 + BEAM_LENGTH;
-		double legY = y1+ROPE_LENGTH + 2 * HEAD_RADIUS + BODY_LENGTH;
-		addLine(legX,legY,legX - HIP_WIDTH,legY);
-		addLine(legX - HIP_WIDTH,legY,legX - HIP_WIDTH,legY + LEG_LENGTH);
+	public void drawRightHand() {
+		double x1 = getWidth() / 2;
+		double y1 = getHeight() / 50 + ROPE_LENGTH + 2 * HEAD_RADIUS + ARM_OFFSET_FROM_HEAD;
+		double x2 = x1 + UPPER_ARM_LENGTH;
+		double y2 = getHeight() / 50 + ROPE_LENGTH + 2 * HEAD_RADIUS + ARM_OFFSET_FROM_HEAD;
+		double x3 = x2;
+		double y3 = y2 + LOWER_ARM_LENGTH;
+
+		GLine rightHand = new GLine(x1, y1, x2, y2);
+		add(rightHand);
+
+		GLine rightWrist = new GLine(x2, y2, x3, y3);
+		add(rightWrist);
 	}
 
-	private void drawRightLeg(double x1, double y1) {
-		double legX = x1 + BEAM_LENGTH;
-		double legY = y1+ROPE_LENGTH + 2 * HEAD_RADIUS + BODY_LENGTH;
-		addLine(legX,legY,legX + HIP_WIDTH,legY);
-		addLine(legX + HIP_WIDTH,legY,legX + HIP_WIDTH,legY + LEG_LENGTH);
+	public void drawLeftLeg() {
+		double x1 = getWidth() / 2;
+		double y1 = getHeight() / 50 + ROPE_LENGTH + 2 * HEAD_RADIUS + BODY_LENGTH;
+		double x2 = x1 - HIP_WIDTH;
+		double y2 = y1;
+		double x3 = x2;
+		double y3 = y2 + LEG_LENGTH;
+
+		GLine leftHip = new GLine(x1, y1, x2, y2);
+		add(leftHip);
+
+		GLine leftLeg = new GLine(x2, y2, x3, y3);
+		add(leftLeg);
+
 	}
 
-	private void drawLeftFoot(double x1, double y1) {
-		double FootX = x1 + BEAM_LENGTH - HIP_WIDTH;
-		double FootY = y1+ROPE_LENGTH + 2 * HEAD_RADIUS + BODY_LENGTH + LEG_LENGTH;
-		addLine(FootX,FootY,FootX - FOOT_LENGTH,FootY);
+	public void drawRightLeg() {
+		double x1 = getWidth() / 2;
+		double y1 = getHeight() / 50 + ROPE_LENGTH + 2 * HEAD_RADIUS + BODY_LENGTH;
+		double x2 = x1 + HIP_WIDTH;
+		double y2 = y1;
+		double x3 = x2;
+		double y3 = y2 + LEG_LENGTH;
+
+		GLine rightHip = new GLine(x1, y1, x2, y2);
+		add(rightHip);
+
+		GLine rightLeg = new GLine(x2, y2, x3, y3);
+		add(rightLeg);
+
 	}
 
-	private void drawRightFoot(double x1, double y1) {
-		double FootX = x1 + BEAM_LENGTH + HIP_WIDTH;
-		double FootY = y1+ROPE_LENGTH + 2 * HEAD_RADIUS + BODY_LENGTH + LEG_LENGTH;
-		addLine(FootX,FootY,FootX + FOOT_LENGTH,FootY);
+	public void drawLeftFoot() {
+		double x1 = getWidth() / 2 - HIP_WIDTH;
+		double y1 = getHeight() / 50 + ROPE_LENGTH + 2 * HEAD_RADIUS + BODY_LENGTH + LEG_LENGTH;
+		double x2 = x1 - FOOT_LENGTH;
+		double y2 = y1;
+
+		GLine leftFoot = new GLine(x1, y1, x2, y2);
+		add(leftFoot);
 	}
 
-	// Displays the incorrect letters
-	private void addLetterToList(char letter) {
-		label.setLabel(label.getLabel() + letter);
-		label.setFont("Arial-30");
-		double cordX = (getWidth() - label.getWidth()) / 2.0;
-		double cordY = getHeight() - label.getDescent();
-		add(label,cordX,cordY);
+	public void drawRightFoot() {
+		double x1 = getWidth() / 2 + HIP_WIDTH;
+		double y1 = getHeight() / 50 + ROPE_LENGTH + 2 * HEAD_RADIUS + BODY_LENGTH + LEG_LENGTH;
+		double x2 = x1 + FOOT_LENGTH;
+		double y2 = y1;
+
+		GLine leftFoot = new GLine(x1, y1, x2, y2);
+		add(leftFoot);
 	}
 
-/* instance variables */
-	
-	/** label that displays the guessed letters  */
-	private GLabel wordDisplay = new GLabel("");
-	
-	/** label that displays the incorrect letters */
-	private GLabel label = new GLabel("");
-		
-	
-/* Constants for the simple version of the picture (in pixels) */
-	private static final int SCAFFOLD_MARGIN_BOTTOM = 50;
+	/* Constants for the simple version of the picture (in pixels) */
 	private static final int SCAFFOLD_HEIGHT = 360;
 	private static final int BEAM_LENGTH = 144;
 	private static final int ROPE_LENGTH = 18;
@@ -158,4 +169,5 @@ public class HangmanCanvas extends GCanvas {
 	private static final int HIP_WIDTH = 36;
 	private static final int LEG_LENGTH = 108;
 	private static final int FOOT_LENGTH = 28;
+
 }

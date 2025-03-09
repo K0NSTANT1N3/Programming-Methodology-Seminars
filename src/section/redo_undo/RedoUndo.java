@@ -5,44 +5,51 @@ import acm.program.ConsoleProgram;
 import java.util.ArrayList;
 
 public class RedoUndo extends ConsoleProgram implements Undoer {
-    private ArrayList<String> data;
-    int curIndex;
+
+    ArrayList<String> texts;
+    int curInt;
 
     public RedoUndo() {
-        data = new ArrayList<>();
-        curIndex = -1;
+       texts = new ArrayList<>();
+       curInt = -1;
     }
 
 
     @Override
     public String get() {
-        return curIndex >= 0 ? data.get(curIndex) : "";
+        if(curInt == -1){
+            return "";
+        }
+        return texts.get(curInt);
     }
 
     @Override
     public void save(String text) {
-        curIndex++;
-        while (data.size() > curIndex) {
-            data.remove(curIndex);
-        }
-        data.add(text);
+       if(curInt < texts.size()-1){
+           while(curInt != texts.size()-1){
+               texts.remove(texts.size()-1);
+           }
+       }
+       curInt += 1;
+       texts.add(text);
     }
 
     @Override
     public void undo() {
-        curIndex = curIndex > 0 ? curIndex - 1 : curIndex;
+        if (curInt > 0) {
+            curInt -= 1;
+        }
     }
-
     @Override
     public void redo() {
-        if (data.size() > curIndex + 1) {
-            curIndex++;
-        }
+      if(curInt != -1 && curInt <= texts.size()-1 ){
+          curInt += 1;
+      }
     }
 
     @Override
     public void clear() {
-        data.clear();
-        curIndex = -1;
+       texts.clear();
+       curInt = -1;
     }
 }

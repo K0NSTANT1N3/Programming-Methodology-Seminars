@@ -29,7 +29,8 @@ public class NameSurferDataBase implements NameSurferConstants {
     public NameSurferDataBase(String filename) {
         FileReader fileReader;
         try {
-            String src = "src/assignments.nameSurfer/" + filename; //modify based on hierarchy of your code
+            String src = "" +
+                    "/home/konstantine/IdeaProjects/ProgrammingMethodology/src/assignments/nameSurfer/" + filename; //modify based on hierarchy of your code
             fileReader = new FileReader(src);
             this.reader = new BufferedReader(fileReader);
             this.reader.mark(200000);
